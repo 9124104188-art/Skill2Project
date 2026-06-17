@@ -1,4 +1,4 @@
-const favorites = require('../models/favorite');
+const favorites = require('../models/Favorite');
 const generatecode = require('../services/geminiService');
 
 async function getProjects(req, res) {
