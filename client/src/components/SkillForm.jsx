@@ -2,7 +2,7 @@ import {useState} from 'react';
 import ProjectCard from "./ProjectCard";
 
 
-
+const API_URL = "https://skill2project-backend.onrender.com";
 
 
 function SkillForm() {
@@ -13,7 +13,7 @@ function SkillForm() {
 
     async function handleGenerateIdeas() {
         setloading(true);
-        const response = await fetch(`http://localhost:5000/api/projects?skill=${skill}`);
+        const response = await fetch(`${API_URL}/api/projects?skill=${skill}`);
         const data = await response.json();
         console.log(data);
         setloading(false);
@@ -27,13 +27,13 @@ function SkillForm() {
     }
 
     async function viewFavorites() {
-  const response = await fetch("http://localhost:5000/api/projects/favorites");
+  const response = await fetch(`${API_URL}/api/projects/favorites`);
   const data = await response.json();
   setFavorites(data);
     }
 
     async function saveFavorite(idea){
-        const response = await fetch('http://localhost:5000/api/projects/favorites',{
+        const response = await fetch(`${API_URL}/api/projects/favorites`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -47,7 +47,7 @@ function SkillForm() {
 
     async function deleteFavorite(id){
         const response = await fetch(
-            `http://localhost:5000/api/projects/favorites/${id}`,
+            `${API_URL}/api/projects/favorites/${id}`,
             {
             method:'DELETE',
             }
